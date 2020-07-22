@@ -2,7 +2,7 @@
 <!DOCTYPE generatorConfiguration  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
 
-    <context id="DB2Tables" targetRuntime="MyBatis3">
+    <context id="DB2Tables" targetRuntime="MyBatis3Simple">
 
         <!-- 去除自动生成的注释 -->
         <commentGenerator><property name="suppressAllComments" value="true" /></commentGenerator>
@@ -13,12 +13,12 @@
                         password="123456">
         </jdbcConnection>
 
-        <!-- targetProject:自动生成model代码的位置 -->
+        <!-- targetProject:自动生成entity代码的位置 -->
         <javaModelGenerator targetPackage="com.markz.horizon.entity" targetProject="./src/main/java">
         </javaModelGenerator>
 
-        <!-- targetProject:自动生成mappers代码的位置 -->
-        <sqlMapGenerator targetPackage="com.markz.horizon.mapper"  targetProject="./src/main/java">
+        <!-- targetProject:自动生成XML代码的位置 -->
+        <sqlMapGenerator targetPackage="mapper"  targetProject="./src/main/resources">
         </sqlMapGenerator>
 
         <!-- targetProject:自动生成dao代码的位置 -->
