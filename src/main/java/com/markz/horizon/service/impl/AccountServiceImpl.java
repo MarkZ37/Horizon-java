@@ -27,6 +27,17 @@ public class AccountServiceImpl implements AccountService {
         User user = new User();
         System.out.println(loginParams);
         BaseResponse baseResponse = new BaseResponse();
+        user = userMapper.selectByPrimaryKey(Integer.parseInt(loginParams.getAccount()));
+        System.out.println(user.getPassword());
+        if (user.getPassword().equals(loginParams.getPassword())) {
+            baseResponse.setStatus(1);
+            baseResponse.setData(user);
+            baseResponse.setMessage(LOGINSUCCESS);
+        } else {
+            baseResponse.setStatus(0);
+            baseResponse.setData("用户信息");
+            baseResponse.setMessage(PASSERROR);
+        }
         return baseResponse;
     }
 }
