@@ -111,7 +111,15 @@
             <artifactId>okhttp</artifactId>
         </dependency>
 
-<!--        阿里云OSS-->
+        <!-- https://mvnrepository.com/artifact/org.json/json -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20200518</version>
+        </dependency>
+
+
+        <!--        阿里云OSS-->
         <dependency>
             <groupId>com.aliyun.oss</groupId>
             <artifactId>aliyun-sdk-oss</artifactId>

@@ -29,5 +29,7 @@ public class UserController {
 //        return accountServiceImpl.loginService(loginParams);
 //        System.out.println(weChatLoginModel);
         return weChatLoginService.loginService(weChatLoginModel);
+
     }
+
 }
