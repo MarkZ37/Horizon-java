@@ -1,11 +1,8 @@
 package com.markz.horizon.controller.api;
 
-import com.markz.horizon.entity.VO.LoginParams;
 import com.markz.horizon.entity.base.BaseResponse;
 import com.markz.horizon.entity.model.WeChatLoginModel;
 import com.markz.horizon.service.WeChatLoginService;
-import com.markz.horizon.service.impl.AccountServiceImpl;
-import com.markz.horizon.service.impl.WeChatLoginServiceImpl;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,10 +23,7 @@ public class UserController {
     @ApiOperation("用户登录")
     @PostMapping("/login")
     public BaseResponse login(@RequestBody @Valid WeChatLoginModel weChatLoginModel) {
-//        return accountServiceImpl.loginService(loginParams);
-//        System.out.println(weChatLoginModel);
         return weChatLoginService.loginService(weChatLoginModel);
-
     }
 
 }

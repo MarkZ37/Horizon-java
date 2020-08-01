@@ -24,6 +24,11 @@ public class WeChatLoginServiceImpl implements WeChatLoginService {
     private final static Integer LOGINOKSTATUS = 777;
     private final static Integer LOGINFAILEDSTATUS = 666;
 
+    /**
+     * 用户登录，获取用户信息
+     * @param weChatLoginModel
+     * @return
+     */
     @Override
     public @NotNull BaseResponse loginService(@NotNull WeChatLoginModel weChatLoginModel) {
         //接收的数据参数
