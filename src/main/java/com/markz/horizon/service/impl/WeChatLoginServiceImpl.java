@@ -59,7 +59,6 @@ public class WeChatLoginServiceImpl implements WeChatLoginService {
                     userInfoMap.put("province", userInfoJSON.get("province"));
                     userInfoMap.put("country", userInfoJSON.get("country"));
                     userInfoMap.put("avatarUrl", userInfoJSON.get("avatarUrl"));
-                    // 解密unionId & openId;
                     userInfoMap.put("openId", userInfoJSON.get("openId"));
                     baseResponse.setData(userInfoMap);
                 } else {
