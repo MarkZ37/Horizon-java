@@ -1,11 +1,14 @@
 package com.markz.horizon.service.impl;
 
+import com.markz.horizon.entity.Userinfo;
 import com.markz.horizon.entity.base.BaseResponse;
 import com.markz.horizon.entity.model.WeChatLoginModel;
+import com.markz.horizon.mapper.UserinfoMapper;
 import com.markz.horizon.service.WeChatLoginService;
 import com.markz.horizon.utils.AesCbcUtil;
 import okhttp3.*;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +27,8 @@ public class WeChatLoginServiceImpl implements WeChatLoginService {
     private final static Integer LOGINOKSTATUS = 777;
     private final static Integer LOGINFAILEDSTATUS = 666;
 
+    @Autowired
+    UserinfoMapper userinfoMapper;
     /**
      * 用户登录，获取用户信息
      * @param weChatLoginModel
@@ -52,6 +57,18 @@ public class WeChatLoginServiceImpl implements WeChatLoginService {
                 if (result != null && result.length() > 0) {
                     JSONObject userInfoJSON = new JSONObject(result);
                     System.out.println(userInfoJSON);
+                    if (userinfoMapper.selectByPrimaryKey(userInfoJSON.getString("openId")) == null){
+                        System.out.println("enter insert");
+                        Userinfo userinfo = new Userinfo();
+                        userinfo.setOpenid(userInfoJSON.getString("openId"));
+                        userinfo.setNickname(userInfoJSON.getString("nickName"));
+                        userinfo.setAvatarurl(userInfoJSON.getString("avatarUrl"));
+                        userinfo.setCountry(userInfoJSON.getString("country"));
+                        userinfo.setProvince(userInfoJSON.getString("province"));
+                        userinfo.setCity(userInfoJSON.getString("city"));
+                        userinfo.setGender(userInfoJSON.getInt("gender"));
+                        userinfoMapper.insert(userinfo);
+                    }
                     Map<String,Object> userInfoMap = new HashMap<String, Object>();
                     userInfoMap.put("nickName", userInfoJSON.get("nickName"));
                     userInfoMap.put("gender", userInfoJSON.get("gender"));
@@ -61,6 +78,7 @@ public class WeChatLoginServiceImpl implements WeChatLoginService {
                     userInfoMap.put("avatarUrl", userInfoJSON.get("avatarUrl"));
                     userInfoMap.put("openId", userInfoJSON.get("openId"));
                     baseResponse.setData(userInfoMap);
+
                 } else {
                     baseResponse.setData("用户信息解析失败");
                 }

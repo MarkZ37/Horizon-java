@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.markz.horizon.mapper.ArticleMapper">
+  <resultMap id="BaseResultMap" type="com.markz.horizon.entity.Article">
+    <id column="openid" jdbcType="VARCHAR" property="openid" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="article" jdbcType="LONGVARCHAR" property="article" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from article
+    where openid = #{openid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.markz.horizon.entity.Article">
+    insert into article (openid, time, article
+      )
+    values (#{openid,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, #{article,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.markz.horizon.entity.Article">
+    update article
+    set time = #{time,jdbcType=TIMESTAMP},
+      article = #{article,jdbcType=LONGVARCHAR}
+    where openid = #{openid,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select openid, time, article
+    from article
+    where openid = #{openid,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select openid, time, article
+    from article
+  </select>
+</mapper>
