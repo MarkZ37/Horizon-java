@@ -14,8 +14,7 @@ import javax.validation.constraints.NotNull;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service
 @Transactional
@@ -69,7 +68,10 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public BaseResponse getArticle(OpenIdModel openIdModel){
         List<Article> articles = articleMapper.selectByOpenId(openIdModel.getOpenid());
+        Collections.reverse(articles);
+//        List<Article> articles = new ArrayList<Article>();
         BaseResponse baseResponse = new BaseResponse();
+        Map<String,Object> articleMap = new HashMap<String, Object>();
         baseResponse.setStatus(GETSUCCESSSTATUS);
         baseResponse.setMessage(GETSUCCESS);
         baseResponse.setData(articles);
