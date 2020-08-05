@@ -31,4 +31,9 @@
     select openid, time, article
     from article
   </select>
+  <select id="selectByOpenId" resultMap="BaseResultMap">
+    select openid, time, article
+    from article
+    where openid = #{openid,jdbcType=VARCHAR}
+  </select>
 </mapper>
