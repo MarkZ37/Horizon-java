@@ -47,6 +47,8 @@ public class ArticleServiceImpl implements ArticleService {
         }
         article.setOpenid(deployArticleModel.getOpenid());
         article.setArticle(deployArticleModel.getArticle());
+        article.setNickname(deployArticleModel.getNickname());
+        article.setAvatarurl(deployArticleModel.getAvatarurl());
         article.setTime(date);
         //回复状态
         if(articleMapper.insert(article) > 0){

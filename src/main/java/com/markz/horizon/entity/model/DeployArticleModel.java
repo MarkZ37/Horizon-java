@@ -16,4 +16,9 @@ public class DeployArticleModel {
     @NotNull(message = "article为空")
     private String article;
 
+    @NotNull(message = "nickname为空")
+    private String nickname;
+
+    @NotNull(message = "avatarurl为空")
+    private String avatarurl;
 }
