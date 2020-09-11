@@ -7,6 +7,10 @@ public class Article {
 
     private Date time;
 
+    private String nickname;
+
+    private String avatarurl;
+
     private String article;
 
     public String getOpenid() {
@@ -23,6 +27,22 @@ public class Article {
 
     public void setTime(Date time) {
         this.time = time;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getAvatarurl() {
+        return avatarurl;
+    }
+
+    public void setAvatarurl(String avatarurl) {
+        this.avatarurl = avatarurl;
     }
 
     public String getArticle() {
