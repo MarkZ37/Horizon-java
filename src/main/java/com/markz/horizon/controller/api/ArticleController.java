@@ -25,4 +25,9 @@ public class ArticleController {
     public BaseResponse getArticle(@RequestBody @Valid OpenIdModel openIdModel){
         return articleService.getArticle(openIdModel);
     }
+
+    @RequestMapping(value = "/getMain", method = RequestMethod.POST)
+    public BaseResponse getMain(){
+        return articleService.getMain();
+    }
 }

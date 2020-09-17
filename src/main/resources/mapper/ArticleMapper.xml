@@ -19,8 +19,13 @@
     from article
   </select>
   <select id="selectByOpenId" resultMap="BaseResultMap">
-    select openid, time, article
+    select openid, time, article,nickname,avatarurl
     from article
     where openid = #{openid,jdbcType=VARCHAR}
+  </select>
+  <select id="selectMain" resultMap="BaseResultMap">
+    select openid, time, article,nickname,avatarurl
+    from article
+    limit 0,20
   </select>
 </mapper>

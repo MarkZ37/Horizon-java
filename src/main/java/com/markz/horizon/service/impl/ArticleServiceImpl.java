@@ -70,7 +70,22 @@ public class ArticleServiceImpl implements ArticleService {
     public BaseResponse getArticle(OpenIdModel openIdModel){
         List<Article> articles = articleMapper.selectByOpenId(openIdModel.getOpenid());
         Collections.reverse(articles);
-//        List<Article> articles = new ArrayList<Article>();
+        BaseResponse baseResponse = new BaseResponse();
+        Map<String,Object> articleMap = new HashMap<String, Object>();
+        baseResponse.setStatus(GETSUCCESSSTATUS);
+        baseResponse.setMessage(GETSUCCESS);
+        baseResponse.setData(articles);
+        return baseResponse;
+    }
+
+    /**
+     * 获取二十篇文章
+     * @return
+     */
+    @Override
+    public BaseResponse getMain(){
+        List<Article> articles = articleMapper.selectMain();
+        Collections.reverse(articles);
         BaseResponse baseResponse = new BaseResponse();
         Map<String,Object> articleMap = new HashMap<String, Object>();
         baseResponse.setStatus(GETSUCCESSSTATUS);

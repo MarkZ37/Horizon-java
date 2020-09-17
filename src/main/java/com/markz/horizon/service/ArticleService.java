@@ -14,4 +14,6 @@ public interface ArticleService {
 
     @NotNull
     BaseResponse getArticle(@NotNull OpenIdModel openIdModel);
+
+    BaseResponse getMain();
 }

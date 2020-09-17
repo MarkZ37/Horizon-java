@@ -4,7 +4,7 @@ server:
 spring:
   datasource:
     username: root
-    password: ZCzc3737
+    password: 123
     url: jdbc:mysql://localhost:3306/horizon?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
 
@@ -13,3 +13,4 @@ spring:
 mybatis:
   mapper-locations: classpath:/mapper/*.xml
   type-aliases-package: com.markz.horizon.entity
+  

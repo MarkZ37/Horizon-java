@@ -37,7 +37,6 @@ public class WeChatLoginServiceImpl implements WeChatLoginService {
     @Override
     public @NotNull BaseResponse loginService(@NotNull WeChatLoginModel weChatLoginModel) {
         //接收的数据参数
-//        System.out.println(weChatLoginModel);
         String url = "https://api.weixin.qq.com/sns/jscode2session?appid=%s&secret=%s&js_code=%s&grant_type=authorization_code";
         BaseResponse baseResponse = new BaseResponse();
         OkHttpClient okHttpClient = new OkHttpClient();

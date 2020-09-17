@@ -9,4 +9,6 @@ public interface ArticleMapper {
     List<Article> selectAll();
 
     List<Article> selectByOpenId(String openid);
+
+    List<Article> selectMain();
 }
