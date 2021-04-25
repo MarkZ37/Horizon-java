@@ -24,8 +24,8 @@ public class WeChatLoginServiceImpl implements WeChatLoginService {
 
     private final static String LOGINOK = "LoginOK";
     private final static String LOGINFAILED = "Loginfailed";
-    private final static Integer LOGINOKSTATUS = 777;
-    private final static Integer LOGINFAILEDSTATUS = 666;
+    private final static Integer LOGINOKSTATUS = 0;
+    private final static Integer LOGINFAILEDSTATUS = 1;
 
     @Autowired
     UserinfoMapper userinfoMapper;

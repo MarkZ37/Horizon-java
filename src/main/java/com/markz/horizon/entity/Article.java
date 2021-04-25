@@ -3,6 +3,8 @@ package com.markz.horizon.entity;
 import java.util.Date;
 
 public class Article {
+    private Integer id;
+
     private String openid;
 
     private Date time;
@@ -11,7 +13,17 @@ public class Article {
 
     private String avatarurl;
 
+    private String username;
+
     private String article;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getOpenid() {
         return openid;
@@ -43,6 +55,14 @@ public class Article {
 
     public void setAvatarurl(String avatarurl) {
         this.avatarurl = avatarurl;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getArticle() {

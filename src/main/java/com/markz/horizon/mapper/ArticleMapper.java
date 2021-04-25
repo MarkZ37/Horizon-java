@@ -4,11 +4,13 @@ import com.markz.horizon.entity.Article;
 import java.util.List;
 
 public interface ArticleMapper {
+    int deleteByPrimaryKey(Integer id);
+
     int insert(Article record);
+
+    Article selectByPrimaryKey(Integer id);
 
     List<Article> selectAll();
 
-    List<Article> selectByOpenId(String openid);
-
-    List<Article> selectMain();
+    int updateByPrimaryKey(Article record);
 }

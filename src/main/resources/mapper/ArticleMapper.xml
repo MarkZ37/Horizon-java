@@ -2,30 +2,43 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.markz.horizon.mapper.ArticleMapper">
   <resultMap id="BaseResultMap" type="com.markz.horizon.entity.Article">
+    <id column="id" jdbcType="INTEGER" property="id" />
     <result column="openid" jdbcType="VARCHAR" property="openid" />
     <result column="time" jdbcType="TIMESTAMP" property="time" />
     <result column="nickname" jdbcType="VARCHAR" property="nickname" />
     <result column="avatarurl" jdbcType="VARCHAR" property="avatarurl" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="article" jdbcType="LONGVARCHAR" property="article" />
   </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from article
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
   <insert id="insert" parameterType="com.markz.horizon.entity.Article">
-    insert into article (openid, time, nickname, 
-      avatarurl, article)
-    values (#{openid,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, #{nickname,jdbcType=VARCHAR}, 
-      #{avatarurl,jdbcType=VARCHAR}, #{article,jdbcType=LONGVARCHAR})
+    insert into article (id, openid, time, 
+      nickname, avatarurl, username, 
+      article)
+    values (#{id,jdbcType=INTEGER}, #{openid,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, 
+      #{nickname,jdbcType=VARCHAR}, #{avatarurl,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+      #{article,jdbcType=LONGVARCHAR})
   </insert>
+  <update id="updateByPrimaryKey" parameterType="com.markz.horizon.entity.Article">
+    update article
+    set openid = #{openid,jdbcType=VARCHAR},
+      time = #{time,jdbcType=TIMESTAMP},
+      nickname = #{nickname,jdbcType=VARCHAR},
+      avatarurl = #{avatarurl,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      article = #{article,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, openid, time, nickname, avatarurl, username, article
+    from article
+    where id = #{id,jdbcType=INTEGER}
+  </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select openid, time, nickname, avatarurl, article
+    select id, openid, time, nickname, avatarurl, username, article
     from article
-  </select>
-  <select id="selectByOpenId" resultMap="BaseResultMap">
-    select openid, time, article,nickname,avatarurl
-    from article
-    where openid = #{openid,jdbcType=VARCHAR}
-  </select>
-  <select id="selectMain" resultMap="BaseResultMap">
-    select openid, time, article,nickname,avatarurl
-    from article
-    limit 0,20
   </select>
 </mapper>

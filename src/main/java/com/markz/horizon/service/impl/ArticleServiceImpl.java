@@ -22,11 +22,12 @@ public class ArticleServiceImpl implements ArticleService {
     @Autowired
     ArticleMapper articleMapper;
     private final static String UPLOADSUCCESS = "上传成功";
-    private final static Integer UPLOADSUCCESSSTATUS = 135;
+    private final static Integer UPLOADSUCCESSSTATUS = 0;
     private final static String UPLOADFAILED = "上传失败";
-    private final static Integer UPLOADFAILEDSTATUS = 1357;
+    private final static Integer UPLOADFAILEDSTATUS = 1;
     private final static String GETSUCCESS = "获取成功";
-    private final static Integer GETSUCCESSSTATUS = 246;
+    private final static Integer GETSUCCESSSTATUS = 0;
+    private final static Integer GETFAILEDTATUS = 1;
     /**
      * 上传文章
      * @param deployArticleModel
@@ -68,13 +69,13 @@ public class ArticleServiceImpl implements ArticleService {
      */
     @Override
     public BaseResponse getArticle(OpenIdModel openIdModel){
-        List<Article> articles = articleMapper.selectByOpenId(openIdModel.getOpenid());
-        Collections.reverse(articles);
+//        List<Article> articles = articleMapper.selectByOpenId(openIdModel.getOpenid());
+//        Collections.reverse(articles);
         BaseResponse baseResponse = new BaseResponse();
-        Map<String,Object> articleMap = new HashMap<String, Object>();
-        baseResponse.setStatus(GETSUCCESSSTATUS);
-        baseResponse.setMessage(GETSUCCESS);
-        baseResponse.setData(articles);
+//        Map<String,Object> articleMap = new HashMap<String, Object>();
+//        baseResponse.setStatus(GETSUCCESSSTATUS);
+//        baseResponse.setMessage(GETSUCCESS);
+//        baseResponse.setData(articles);
         return baseResponse;
     }
 
@@ -84,13 +85,13 @@ public class ArticleServiceImpl implements ArticleService {
      */
     @Override
     public BaseResponse getMain(){
-        List<Article> articles = articleMapper.selectMain();
-        Collections.reverse(articles);
+//        List<Article> articles = articleMapper.selectMain();
+//        Collections.reverse(articles);
         BaseResponse baseResponse = new BaseResponse();
-        Map<String,Object> articleMap = new HashMap<String, Object>();
-        baseResponse.setStatus(GETSUCCESSSTATUS);
-        baseResponse.setMessage(GETSUCCESS);
-        baseResponse.setData(articles);
+//        Map<String,Object> articleMap = new HashMap<String, Object>();
+//        baseResponse.setStatus(GETSUCCESSSTATUS);
+//        baseResponse.setMessage(GETSUCCESS);
+//        baseResponse.setData(articles);
         return baseResponse;
     }
 }
