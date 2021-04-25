@@ -11,6 +11,8 @@ public class Useraccount {
 
     private String sign;
 
+    private String idnumber;
+
     public String getUsername() {
         return username;
     }
@@ -49,5 +51,13 @@ public class Useraccount {
 
     public void setSign(String sign) {
         this.sign = sign;
+    }
+
+    public String getIdnumber() {
+        return idnumber;
+    }
+
+    public void setIdnumber(String idnumber) {
+        this.idnumber = idnumber;
     }
 }

@@ -7,6 +7,7 @@
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="avatarurl" jdbcType="VARCHAR" property="avatarurl" />
     <result column="sign" jdbcType="VARCHAR" property="sign" />
+    <result column="idnumber" jdbcType="VARCHAR" property="idnumber" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from useraccount
@@ -14,25 +15,28 @@
   </delete>
   <insert id="insert" parameterType="com.markz.horizon.entity.Useraccount">
     insert into useraccount (username, nickname, password, 
-      avatarurl, sign)
+      avatarurl, sign, idnumber
+      )
     values (#{username,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{avatarurl,jdbcType=VARCHAR}, #{sign,jdbcType=VARCHAR})
+      #{avatarurl,jdbcType=VARCHAR}, #{sign,jdbcType=VARCHAR}, #{idnumber,jdbcType=VARCHAR}
+      )
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.markz.horizon.entity.Useraccount">
     update useraccount
     set nickname = #{nickname,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
       avatarurl = #{avatarurl,jdbcType=VARCHAR},
-      sign = #{sign,jdbcType=VARCHAR}
+      sign = #{sign,jdbcType=VARCHAR},
+      idnumber = #{idnumber,jdbcType=VARCHAR}
     where username = #{username,jdbcType=VARCHAR}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select username, nickname, password, avatarurl, sign
+    select username, nickname, password, avatarurl, sign, idnumber
     from useraccount
     where username = #{username,jdbcType=VARCHAR}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select username, nickname, password, avatarurl, sign
+    select username, nickname, password, avatarurl, sign, idnumber
     from useraccount
   </select>
 </mapper>

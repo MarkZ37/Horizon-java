@@ -22,5 +22,6 @@ public class WebRegistModel {
     @NotBlank(message = "nickname为空")
     private String nickname;
 
-
+    @NotBlank(message = "idNumber为空")
+    private String idNumber;
 }
