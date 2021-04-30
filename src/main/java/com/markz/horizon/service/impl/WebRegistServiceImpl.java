@@ -21,8 +21,8 @@ public class WebRegistServiceImpl implements WebRegistService {
     @Autowired
     UseraccountMapper useraccountMapper;
 
-    private final static String REGISTOK = "Login OK";
-    private final static String REGISTFAILED = "Login failed";
+    private final static String REGISTOK = "Regist OK";
+    private final static String REGISTFAILED = "Regist failed";
     private final static String ACCOUNTEXIST = "Username exists";
     private final static Integer REGISTOKSTATUS = 0;
     private final static Integer REGISTFAILEDSTATUS = 1;

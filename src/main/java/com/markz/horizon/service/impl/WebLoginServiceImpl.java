@@ -5,11 +5,14 @@ import com.markz.horizon.entity.model.WeChatLoginModel;
 import com.markz.horizon.entity.model.WebLoginModel;
 import com.markz.horizon.mapper.UseraccountMapper;
 import com.markz.horizon.service.WebLoginService;
+import com.markz.horizon.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.constraints.NotNull;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -19,16 +22,34 @@ public class WebLoginServiceImpl implements WebLoginService {
     UseraccountMapper useraccountMapper;
 
     private final static String LOGINOK = "Login OK";
-    private final static String LOGINFAILED = "Login failed";
-
+    private final static String PASSWORDWRONG = "Password wrong";
+    private final static String ACCOUNTNOTEXIST = "Account not exist";
     private final static Integer LOGINOKSTATUS = 0;
     private final static Integer LOGINFAILEDSTATUS = 1;
     @Override
     public @NotNull BaseResponse webLoginService(@NotNull WebLoginModel webLoginModel){
         BaseResponse baseResponse = new BaseResponse();
         if (useraccountMapper.selectByPrimaryKey(webLoginModel.getAccount()) != null){
-            baseResponse.setMessage(LOGINOK);
-            baseResponse.setStatus(LOGINOKSTATUS);
+            //账号存在
+            if (useraccountMapper.selectByPrimaryKey(webLoginModel.getAccount()).getPassword().equals(webLoginModel.getPassword())){
+                //密码正确
+
+                //生成token
+                String token = JwtUtil.Sign(webLoginModel.getAccount(),webLoginModel.getPassword());
+                Map<String,Object> dataMap = new HashMap<String, Object>();
+                dataMap.put("token",token);
+
+                //下发token
+                baseResponse.setMessage(LOGINOK);
+                baseResponse.setStatus(LOGINOKSTATUS);
+                baseResponse.setData(dataMap);
+            }else {
+                baseResponse.setStatus(LOGINFAILEDSTATUS);
+                baseResponse.setMessage(PASSWORDWRONG);
+            }
+        } else {
+            baseResponse.setMessage(ACCOUNTNOTEXIST);
+            baseResponse.setStatus(LOGINFAILEDSTATUS);
         }
         return baseResponse;
     }

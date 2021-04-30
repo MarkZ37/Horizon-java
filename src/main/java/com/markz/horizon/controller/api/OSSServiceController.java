@@ -3,14 +3,10 @@ package com.markz.horizon.controller.api;
 import com.aliyun.oss.OSSClient;
 import com.aliyun.oss.model.ObjectMetadata;
 import com.aliyun.oss.model.PutObjectResult;
-import com.markz.horizon.entity.base.BaseResponse;
-import com.markz.horizon.entity.model.WeChatLoginModel;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.Valid;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -19,9 +15,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+/**
+ * 上传图片到OSS
+ */
 @RestController
 @RequestMapping("/tool/oss")
-public class ServiceController {
+public class OSSServiceController {
 //    Log log = LogFactory.getLog(OSSClientUtil.class);
 
     //阿里云OSS地址，这里看根据你的oss选择
@@ -38,7 +37,7 @@ public class ServiceController {
 
     private OSSClient ossClient;
 
-    public ServiceController() {
+    public OSSServiceController() {
         ossClient = new OSSClient(endpoint, accessKeyId, accessKeySecret);
     }
 
@@ -63,8 +62,8 @@ public class ServiceController {
      * @return
      */
     public String uploadHomeImageOSS(MultipartFile file) throws Exception {
-        if (file.getSize() > 1024 * 1024 * 3) {
-            throw new Exception("上传图片大小不能超过3M！");
+        if (file.getSize() > 1024 * 1024 * 5) {
+            throw new Exception("上传图片大小不能超过5M！");
         }
         String originalFilename = file.getOriginalFilename();
         String substring = originalFilename.substring(originalFilename.lastIndexOf(".")).toLowerCase();
@@ -194,7 +193,7 @@ public class ServiceController {
      * @throws Exception
      */
     public String updateHomeImage(MultipartFile file) throws Exception {
-        ServiceController ossClient = new ServiceController();
+        OSSServiceController ossClient = new OSSServiceController();
         if (file == null || file.getSize() <= 0) {
             throw new Exception("图片不能为空");
         }
