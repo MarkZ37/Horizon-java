@@ -48,7 +48,7 @@ public class JwtUtil {
     /**
      * token解码,验证权限
      */
-    public static boolean verfy(String token){
+    public static boolean verify(String token){
         try{
             Algorithm algorithm=Algorithm.HMAC256(TOKEN_SECRET);
             JWTVerifier verifier=JWT.require(algorithm).build();

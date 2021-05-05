@@ -176,7 +176,7 @@ public class OSSServiceController {
      */
     public String getUrl(String key) {
         // 设置URL过期时间为10年  3600l* 1000*24*365*10
-        Date expiration = new Date(new Date().getTime() + 3600l * 1000 * 24 * 365 * 10);
+        Date expiration = new Date(System.currentTimeMillis() + 3600L * 1000 * 24 * 365 * 10);
         // 生成URL
         URL url = ossClient.generatePresignedUrl(bucketName, key, expiration);
         if (url != null) {

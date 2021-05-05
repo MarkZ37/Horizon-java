@@ -1,5 +1,6 @@
 package com.markz.horizon.service.impl;
 
+import com.markz.horizon.entity.Useraccount;
 import com.markz.horizon.entity.base.BaseResponse;
 import com.markz.horizon.entity.model.WeChatLoginModel;
 import com.markz.horizon.entity.model.WebLoginModel;
@@ -37,9 +38,17 @@ public class WebLoginServiceImpl implements WebLoginService {
                 //生成token
                 String token = JwtUtil.Sign(webLoginModel.getAccount(),webLoginModel.getPassword());
                 Map<String,Object> dataMap = new HashMap<String, Object>();
+                Useraccount useraccount = useraccountMapper.selectByPrimaryKey(webLoginModel.getAccount());
+                Map<String,Object> userInfoMap = new HashMap<String, Object>();
+
+                userInfoMap.put("userName",useraccount.getUsername());
+                userInfoMap.put("avatarUrl",useraccount.getAvatarurl());
+                userInfoMap.put("nickName",useraccount.getNickname());
+                userInfoMap.put("sign",useraccount.getSign());
+                dataMap.put("userInfo",userInfoMap);
                 dataMap.put("token",token);
 
-                //下发token
+
                 baseResponse.setMessage(LOGINOK);
                 baseResponse.setStatus(LOGINOKSTATUS);
                 baseResponse.setData(dataMap);
