@@ -8,8 +8,8 @@ import javax.validation.constraints.NotBlank;
 @Data
 @ToString
 public class UploadAvatarUrlModel {
-    @NotBlank(message = "url为空")
-    private String url;
+    @NotBlank(message = "avatarUrl为空")
+    private String avatarUrl;
 
     @NotBlank(message = "userName为空")
     private String userName;

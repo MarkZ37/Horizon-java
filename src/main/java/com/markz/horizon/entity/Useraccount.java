@@ -13,6 +13,8 @@ public class Useraccount {
 
     private String idnumber;
 
+    private String emo;
+
     public String getUsername() {
         return username;
     }
@@ -59,5 +61,13 @@ public class Useraccount {
 
     public void setIdnumber(String idnumber) {
         this.idnumber = idnumber;
+    }
+
+    public String getEmo() {
+        return emo;
+    }
+
+    public void setEmo(String emo) {
+        this.emo = emo;
     }
 }

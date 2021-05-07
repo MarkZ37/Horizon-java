@@ -1,10 +1,7 @@
 package com.markz.horizon.controller.api;
 
 import com.markz.horizon.entity.base.BaseResponse;
-import com.markz.horizon.entity.model.WeChatLoginModel;
-import com.markz.horizon.entity.model.WebGetUserInfoModel;
-import com.markz.horizon.entity.model.WebLoginModel;
-import com.markz.horizon.entity.model.WebRegistModel;
+import com.markz.horizon.entity.model.*;
 import com.markz.horizon.service.WeChatLoginService;
 import com.markz.horizon.service.WebLoginService;
 import com.markz.horizon.service.WebRegistService;
@@ -57,5 +54,11 @@ public class UserController {
     @PostMapping("/webgetuserinfo")
     public BaseResponse webGetUserInfo(@RequestBody @Valid WebGetUserInfoModel webGetUserInfoModel) {
         return webUserService.webGetUserInfo(webGetUserInfoModel);
+    }
+
+    @ApiOperation("网页用户上传头像url")
+    @PostMapping("/uploadavatarurl")
+    public BaseResponse uploadAvatarUrl(@RequestBody @Valid UploadAvatarUrlModel uploadAvatarUrlModel) {
+        return webUserService.uploadAvatarUrl(uploadAvatarUrlModel);
     }
 }

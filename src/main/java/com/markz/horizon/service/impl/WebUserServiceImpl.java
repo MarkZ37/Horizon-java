@@ -2,6 +2,7 @@ package com.markz.horizon.service.impl;
 
 import com.markz.horizon.entity.Useraccount;
 import com.markz.horizon.entity.base.BaseResponse;
+import com.markz.horizon.entity.model.UploadAvatarUrlModel;
 import com.markz.horizon.entity.model.WebGetUserInfoModel;
 import com.markz.horizon.mapper.UseraccountMapper;
 import com.markz.horizon.service.WebUserService;
@@ -23,8 +24,10 @@ public class WebUserServiceImpl implements WebUserService {
 
     private final static String GETUSERINFOOK = "Get userinfo OK";
     private final static String GETUSERINFOFAILED = "Get userinfo failed";
-    private final static Integer GETUSERINFOOKSTATUS = 0;
-    private final static Integer GETUSERINFOFAILEDSTATUS = 1;
+    private final static String UPLOADAVATARURLOOK = "Upload avatar url OK";
+    private final static String UPLOADAVATARURLFAILED = "Upload avatar url failed";
+    private final static Integer OKSTATUS = 0;
+    private final static Integer FAILEDSTATUS = 1;
 
     @Override
     public @NotNull BaseResponse webGetUserInfo(@NotNull WebGetUserInfoModel webGetUserInfoModel){
@@ -38,12 +41,34 @@ public class WebUserServiceImpl implements WebUserService {
             userInfoMap.put("avatarUrl",useraccount.getAvatarurl());
             baseResponse.setData(userInfoMap);
             baseResponse.setMessage(GETUSERINFOOK);
-            baseResponse.setStatus(GETUSERINFOOKSTATUS);
+            baseResponse.setStatus(OKSTATUS);
         } else {
             baseResponse.setMessage(GETUSERINFOFAILED);
-            baseResponse.setStatus(GETUSERINFOFAILEDSTATUS);
+            baseResponse.setStatus(FAILEDSTATUS);
         }
 
+        return baseResponse;
+    }
+
+    /**
+     * 实现头像路径的上传与存储
+     * @param uploadAvatarUrlModel
+     * @return
+     */
+    @Override
+    public @NotNull BaseResponse uploadAvatarUrl(@NotNull UploadAvatarUrlModel uploadAvatarUrlModel){
+        BaseResponse baseResponse = new BaseResponse();
+        Useraccount useraccount = useraccountMapper.selectByPrimaryKey(uploadAvatarUrlModel.getUserName());
+        if (useraccount != null){
+            useraccount.setAvatarurl(uploadAvatarUrlModel.getAvatarUrl());
+            useraccountMapper.updateByPrimaryKey(useraccount);
+
+            baseResponse.setStatus(OKSTATUS);
+            baseResponse.setMessage(UPLOADAVATARURLOOK);
+        } else {
+            baseResponse.setStatus(FAILEDSTATUS);
+            baseResponse.setMessage(UPLOADAVATARURLFAILED);
+        }
         return baseResponse;
     }
 }
