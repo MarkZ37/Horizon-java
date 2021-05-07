@@ -2,11 +2,13 @@ package com.markz.horizon.controller.api;
 
 import com.markz.horizon.entity.base.BaseResponse;
 import com.markz.horizon.entity.model.WeChatLoginModel;
+import com.markz.horizon.entity.model.WebGetUserInfoModel;
 import com.markz.horizon.entity.model.WebLoginModel;
 import com.markz.horizon.entity.model.WebRegistModel;
 import com.markz.horizon.service.WeChatLoginService;
 import com.markz.horizon.service.WebLoginService;
 import com.markz.horizon.service.WebRegistService;
+import com.markz.horizon.service.WebUserService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,6 +32,9 @@ public class UserController {
     @Autowired
     WebRegistService webRegistService;
 
+    @Autowired
+    WebUserService webUserService;
+
     @ApiOperation("用户登录")
     @PostMapping("/login")
     public BaseResponse login(@RequestBody @Valid WeChatLoginModel weChatLoginModel) {
@@ -46,5 +51,11 @@ public class UserController {
     @PostMapping("/webregist")
     public BaseResponse webRegist(@RequestBody @Valid WebRegistModel webRegistModel) {
         return webRegistService.webRegistService(webRegistModel);
+    }
+
+    @ApiOperation("网页用户获取用户基础信息")
+    @PostMapping("/webgetuserinfo")
+    public BaseResponse webGetUserInfo(@RequestBody @Valid WebGetUserInfoModel webGetUserInfoModel) {
+        return webUserService.webGetUserInfo(webGetUserInfoModel);
     }
 }

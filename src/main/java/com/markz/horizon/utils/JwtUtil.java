@@ -14,8 +14,8 @@ import java.util.Map;
  * Jwt 生成token与验证token
  */
 public class JwtUtil {
-    //    过期时间设置为15分钟
-    private static final long EXPTRE_TIME= 30 * 60 * 1000;
+    //    过期时间设置
+    private static final long EXPTRE_TIME= 24 * 60 * 60 * 1000;
     /**
      * token私钥
      */

@@ -1,5 +1,6 @@
-package com.markz.horizon.utils;
+package com.markz.horizon.config;
 
+import com.markz.horizon.utils.JwtUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;

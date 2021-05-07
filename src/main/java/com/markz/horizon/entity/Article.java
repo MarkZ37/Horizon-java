@@ -15,6 +15,10 @@ public class Article {
 
     private String username;
 
+    private Integer like;
+
+    private Integer dislike;
+
     private String article;
 
     public Integer getId() {
@@ -63,6 +67,22 @@ public class Article {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public Integer getLike() {
+        return like;
+    }
+
+    public void setLike(Integer like) {
+        this.like = like;
+    }
+
+    public Integer getDislike() {
+        return dislike;
+    }
+
+    public void setDislike(Integer dislike) {
+        this.dislike = dislike;
     }
 
     public String getArticle() {

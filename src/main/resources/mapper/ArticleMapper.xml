@@ -8,6 +8,8 @@
     <result column="nickname" jdbcType="VARCHAR" property="nickname" />
     <result column="avatarurl" jdbcType="VARCHAR" property="avatarurl" />
     <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="like" jdbcType="INTEGER" property="like" />
+    <result column="dislike" jdbcType="INTEGER" property="dislike" />
     <result column="article" jdbcType="LONGVARCHAR" property="article" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
@@ -17,10 +19,12 @@
   <insert id="insert" parameterType="com.markz.horizon.entity.Article">
     insert into article (id, openid, time, 
       nickname, avatarurl, username, 
-      article)
+      like, dislike, article
+      )
     values (#{id,jdbcType=INTEGER}, #{openid,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, 
       #{nickname,jdbcType=VARCHAR}, #{avatarurl,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
-      #{article,jdbcType=LONGVARCHAR})
+      #{like,jdbcType=INTEGER}, #{dislike,jdbcType=INTEGER}, #{article,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.markz.horizon.entity.Article">
     update article
@@ -29,16 +33,18 @@
       nickname = #{nickname,jdbcType=VARCHAR},
       avatarurl = #{avatarurl,jdbcType=VARCHAR},
       username = #{username,jdbcType=VARCHAR},
+      like = #{like,jdbcType=INTEGER},
+      dislike = #{dislike,jdbcType=INTEGER},
       article = #{article,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select id, openid, time, nickname, avatarurl, username, article
+    select id, openid, time, nickname, avatarurl, username, like, dislike, article
     from article
     where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select id, openid, time, nickname, avatarurl, username, article
+    select id, openid, time, nickname, avatarurl, username, like, dislike, article
     from article
   </select>
 </mapper>
