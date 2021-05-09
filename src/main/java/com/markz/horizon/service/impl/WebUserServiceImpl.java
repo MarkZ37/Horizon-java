@@ -1,7 +1,8 @@
 package com.markz.horizon.service.impl;
 
-import com.markz.horizon.entity.Useraccount;
+
 import com.markz.horizon.entity.base.BaseResponse;
+import com.markz.horizon.entity.dao.Useraccount;
 import com.markz.horizon.entity.model.UploadAvatarUrlModel;
 import com.markz.horizon.entity.model.WebGetUserInfoModel;
 import com.markz.horizon.mapper.UseraccountMapper;

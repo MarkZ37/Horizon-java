@@ -1,6 +1,6 @@
 package com.markz.horizon.mapper;
 
-import com.markz.horizon.entity.Useraccount;
+import com.markz.horizon.entity.dao.Useraccount;
 import java.util.List;
 
 public interface UseraccountMapper {

@@ -14,7 +14,7 @@
         </jdbcConnection>
 
         <!-- targetProject:自动生成entity代码的位置 -->
-        <javaModelGenerator targetPackage="com.markz.horizon.entity" targetProject="./src/main/java">
+        <javaModelGenerator targetPackage="com.markz.horizon.entity.dao" targetProject="./src/main/java">
         </javaModelGenerator>
 
         <!-- targetProject:自动生成XML代码的位置 -->

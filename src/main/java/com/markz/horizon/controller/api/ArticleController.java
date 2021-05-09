@@ -3,7 +3,9 @@ package com.markz.horizon.controller.api;
 import com.markz.horizon.entity.base.BaseResponse;
 import com.markz.horizon.entity.model.DeployArticleModel;
 import com.markz.horizon.entity.model.OpenIdModel;
+import com.markz.horizon.entity.model.WebDeployArticleModel;
 import com.markz.horizon.service.ArticleService;
+import com.markz.horizon.service.WebArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +17,9 @@ public class ArticleController {
 
     @Autowired
     ArticleService articleService;
+
+    @Autowired
+    WebArticleService webArticleService;
 
     @RequestMapping(value = "/uploadArticle", method = RequestMethod.POST)
     public BaseResponse responseArticle(@RequestBody @Valid DeployArticleModel deployArticleModel){
@@ -29,5 +34,10 @@ public class ArticleController {
     @RequestMapping(value = "/getMain", method = RequestMethod.POST)
     public BaseResponse getMain(){
         return articleService.getMain();
+    }
+
+    @RequestMapping(value = "/webdeployarticle", method = RequestMethod.POST)
+    public BaseResponse webDeployArticle(@RequestBody @Valid WebDeployArticleModel webDeployArticleModel){
+        return webArticleService.deployArticle(webDeployArticleModel);
     }
 }

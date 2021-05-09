@@ -1,6 +1,6 @@
 package com.markz.horizon.mapper;
 
-import com.markz.horizon.entity.Article;
+import com.markz.horizon.entity.dao.Article;
 import java.util.List;
 
 public interface ArticleMapper {

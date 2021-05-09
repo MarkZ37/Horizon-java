@@ -1,7 +1,8 @@
 package com.markz.horizon.service.impl;
 
-import com.markz.horizon.entity.Article;
+
 import com.markz.horizon.entity.base.BaseResponse;
+import com.markz.horizon.entity.dao.Article;
 import com.markz.horizon.entity.model.DeployArticleModel;
 import com.markz.horizon.entity.model.OpenIdModel;
 import com.markz.horizon.mapper.ArticleMapper;

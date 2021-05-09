@@ -1,4 +1,4 @@
-package com.markz.horizon.entity;
+package com.markz.horizon.entity.dao;
 
 public class Userinfo {
     private String openid;

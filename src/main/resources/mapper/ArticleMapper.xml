@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.markz.horizon.mapper.ArticleMapper">
-  <resultMap id="BaseResultMap" type="com.markz.horizon.entity.Article">
+  <resultMap id="BaseResultMap" type="com.markz.horizon.entity.dao.Article">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="openid" jdbcType="VARCHAR" property="openid" />
     <result column="time" jdbcType="TIMESTAMP" property="time" />
@@ -10,23 +10,24 @@
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="like" jdbcType="INTEGER" property="like" />
     <result column="dislike" jdbcType="INTEGER" property="dislike" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="article" jdbcType="LONGVARCHAR" property="article" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from article
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.markz.horizon.entity.Article">
+  <insert id="insert" parameterType="com.markz.horizon.entity.dao.Article">
     insert into article (id, openid, time, 
       nickname, avatarurl, username, 
-      like, dislike, article
-      )
+      like, dislike, title, 
+      article)
     values (#{id,jdbcType=INTEGER}, #{openid,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, 
       #{nickname,jdbcType=VARCHAR}, #{avatarurl,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
-      #{like,jdbcType=INTEGER}, #{dislike,jdbcType=INTEGER}, #{article,jdbcType=LONGVARCHAR}
-      )
+      #{like,jdbcType=INTEGER}, #{dislike,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
+      #{article,jdbcType=LONGVARCHAR})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.markz.horizon.entity.Article">
+  <update id="updateByPrimaryKey" parameterType="com.markz.horizon.entity.dao.Article">
     update article
     set openid = #{openid,jdbcType=VARCHAR},
       time = #{time,jdbcType=TIMESTAMP},
@@ -35,16 +36,17 @@
       username = #{username,jdbcType=VARCHAR},
       like = #{like,jdbcType=INTEGER},
       dislike = #{dislike,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
       article = #{article,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select id, openid, time, nickname, avatarurl, username, like, dislike, article
+    select id, openid, time, nickname, avatarurl, username, like, dislike, title, article
     from article
     where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select id, openid, time, nickname, avatarurl, username, like, dislike, article
+    select id, openid, time, nickname, avatarurl, username, like, dislike, title, article
     from article
   </select>
 </mapper>

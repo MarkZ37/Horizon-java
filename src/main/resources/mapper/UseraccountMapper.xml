@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.markz.horizon.mapper.UseraccountMapper">
-  <resultMap id="BaseResultMap" type="com.markz.horizon.entity.Useraccount">
+  <resultMap id="BaseResultMap" type="com.markz.horizon.entity.dao.Useraccount">
     <id column="username" jdbcType="VARCHAR" property="username" />
     <result column="nickname" jdbcType="VARCHAR" property="nickname" />
     <result column="password" jdbcType="VARCHAR" property="password" />
@@ -14,7 +14,7 @@
     delete from useraccount
     where username = #{username,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.markz.horizon.entity.Useraccount">
+  <insert id="insert" parameterType="com.markz.horizon.entity.dao.Useraccount">
     insert into useraccount (username, nickname, password, 
       avatarurl, sign, idnumber, 
       emo)
@@ -22,7 +22,7 @@
       #{avatarurl,jdbcType=VARCHAR}, #{sign,jdbcType=VARCHAR}, #{idnumber,jdbcType=VARCHAR}, 
       #{emo,jdbcType=VARCHAR})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.markz.horizon.entity.Useraccount">
+  <update id="updateByPrimaryKey" parameterType="com.markz.horizon.entity.dao.Useraccount">
     update useraccount
     set nickname = #{nickname,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},

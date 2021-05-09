@@ -1,7 +1,7 @@
 package com.markz.horizon.service.impl;
 
-import com.markz.horizon.entity.Userinfo;
 import com.markz.horizon.entity.base.BaseResponse;
+import com.markz.horizon.entity.dao.Userinfo;
 import com.markz.horizon.entity.model.WeChatLoginModel;
 import com.markz.horizon.mapper.UserinfoMapper;
 import com.markz.horizon.service.WeChatLoginService;

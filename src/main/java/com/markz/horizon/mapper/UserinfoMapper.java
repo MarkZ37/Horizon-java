@@ -1,6 +1,6 @@
 package com.markz.horizon.mapper;
 
-import com.markz.horizon.entity.Userinfo;
+import com.markz.horizon.entity.dao.Userinfo;
 import java.util.List;
 
 public interface UserinfoMapper {

@@ -1,23 +1,23 @@
-package com.markz.horizon.entity;
+package com.markz.horizon.entity.dao;
 
 import java.util.Date;
 
-public class Article {
+public class Webarticle {
     private Integer id;
 
-    private String openid;
-
-    private Date time;
+    private String username;
 
     private String nickname;
 
     private String avatarurl;
 
-    private String username;
+    private String title;
 
-    private Integer like;
+    private Integer good;
 
     private Integer dislike;
+
+    private Date time;
 
     private String article;
 
@@ -29,20 +29,12 @@ public class Article {
         this.id = id;
     }
 
-    public String getOpenid() {
-        return openid;
+    public String getUsername() {
+        return username;
     }
 
-    public void setOpenid(String openid) {
-        this.openid = openid;
-    }
-
-    public Date getTime() {
-        return time;
-    }
-
-    public void setTime(Date time) {
-        this.time = time;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getNickname() {
@@ -61,20 +53,20 @@ public class Article {
         this.avatarurl = avatarurl;
     }
 
-    public String getUsername() {
-        return username;
+    public String getTitle() {
+        return title;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public Integer getLike() {
-        return like;
+    public Integer getGood() {
+        return good;
     }
 
-    public void setLike(Integer like) {
-        this.like = like;
+    public void setGood(Integer good) {
+        this.good = good;
     }
 
     public Integer getDislike() {
@@ -83,6 +75,14 @@ public class Article {
 
     public void setDislike(Integer dislike) {
         this.dislike = dislike;
+    }
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
     }
 
     public String getArticle() {

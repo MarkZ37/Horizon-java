@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.markz.horizon.mapper.WebarticleMapper">
+  <resultMap id="BaseResultMap" type="com.markz.horizon.entity.dao.Webarticle">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="avatarurl" jdbcType="VARCHAR" property="avatarurl" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="good" jdbcType="INTEGER" property="good" />
+    <result column="dislike" jdbcType="INTEGER" property="dislike" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="article" jdbcType="LONGVARCHAR" property="article" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from webarticle
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.markz.horizon.entity.dao.Webarticle">
+    insert into webarticle (id, username, nickname, 
+      avatarurl, title, good, 
+      dislike, time, article
+      )
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, 
+      #{avatarurl,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{good,jdbcType=INTEGER}, 
+      #{dislike,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}, #{article,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.markz.horizon.entity.dao.Webarticle">
+    update webarticle
+    set username = #{username,jdbcType=VARCHAR},
+      nickname = #{nickname,jdbcType=VARCHAR},
+      avatarurl = #{avatarurl,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      good = #{good,jdbcType=INTEGER},
+      dislike = #{dislike,jdbcType=INTEGER},
+      time = #{time,jdbcType=TIMESTAMP},
+      article = #{article,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, username, nickname, avatarurl, title, good, dislike, time, article
+    from webarticle
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, username, nickname, avatarurl, title, good, dislike, time, article
+    from webarticle
+  </select>
+</mapper>

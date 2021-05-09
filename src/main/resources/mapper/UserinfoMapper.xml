@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.markz.horizon.mapper.UserinfoMapper">
-  <resultMap id="BaseResultMap" type="com.markz.horizon.entity.Userinfo">
+  <resultMap id="BaseResultMap" type="com.markz.horizon.entity.dao.Userinfo">
     <id column="openid" jdbcType="VARCHAR" property="openid" />
     <result column="nickname" jdbcType="VARCHAR" property="nickname" />
     <result column="avatarurl" jdbcType="VARCHAR" property="avatarurl" />
@@ -14,7 +14,7 @@
     delete from userinfo
     where openid = #{openid,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.markz.horizon.entity.Userinfo">
+  <insert id="insert" parameterType="com.markz.horizon.entity.dao.Userinfo">
     insert into userinfo (openid, nickname, avatarurl, 
       city, country, gender, 
       province)
@@ -22,7 +22,7 @@
       #{city,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, #{gender,jdbcType=INTEGER}, 
       #{province,jdbcType=VARCHAR})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.markz.horizon.entity.Userinfo">
+  <update id="updateByPrimaryKey" parameterType="com.markz.horizon.entity.dao.Userinfo">
     update userinfo
     set nickname = #{nickname,jdbcType=VARCHAR},
       avatarurl = #{avatarurl,jdbcType=VARCHAR},
