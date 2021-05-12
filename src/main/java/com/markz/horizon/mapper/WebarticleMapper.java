@@ -13,4 +13,6 @@ public interface WebarticleMapper {
     List<Webarticle> selectAll();
 
     int updateByPrimaryKey(Webarticle record);
+
+    List<Webarticle> selectByUserName(String username);
 }

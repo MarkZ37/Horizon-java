@@ -47,4 +47,10 @@
     select id, username, nickname, avatarurl, title, good, dislike, time, article
     from webarticle
   </select>
+
+  <select id="selectByUserName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, username, nickname, avatarurl, title, good, dislike, time, article
+    from webarticle
+    where username = #{username,jdbcType=VARCHAR}
+  </select>
 </mapper>

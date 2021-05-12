@@ -4,6 +4,7 @@ import com.markz.horizon.entity.base.BaseResponse;
 import com.markz.horizon.entity.model.DeployArticleModel;
 import com.markz.horizon.entity.model.OpenIdModel;
 import com.markz.horizon.entity.model.WebDeployArticleModel;
+import com.markz.horizon.entity.model.WebGetUserArticleModel;
 import com.markz.horizon.service.ArticleService;
 import com.markz.horizon.service.WebArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,5 +40,10 @@ public class ArticleController {
     @RequestMapping(value = "/webdeployarticle", method = RequestMethod.POST)
     public BaseResponse webDeployArticle(@RequestBody @Valid WebDeployArticleModel webDeployArticleModel){
         return webArticleService.deployArticle(webDeployArticleModel);
+    }
+
+    @RequestMapping(value = "/webgetuserarticle", method = RequestMethod.POST)
+    public BaseResponse webGetUserArticle(@RequestBody @Valid WebGetUserArticleModel webGetUserArticleModel){
+        return webArticleService.webGetUserArticle(webGetUserArticleModel);
     }
 }

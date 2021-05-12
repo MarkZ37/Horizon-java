@@ -1,17 +1,17 @@
 package com.markz.horizon.service.impl;
 
 import com.markz.horizon.entity.base.BaseResponse;
-import com.markz.horizon.entity.dao.Article;
-import com.markz.horizon.entity.dao.Testarticle;
+
+
 import com.markz.horizon.entity.dao.Useraccount;
 import com.markz.horizon.entity.dao.Webarticle;
 import com.markz.horizon.entity.model.WebDeployArticleModel;
-import com.markz.horizon.mapper.ArticleMapper;
-import com.markz.horizon.mapper.TestarticleMapper;
+
+
+import com.markz.horizon.entity.model.WebGetUserArticleModel;
 import com.markz.horizon.mapper.UseraccountMapper;
 import com.markz.horizon.mapper.WebarticleMapper;
 import com.markz.horizon.service.WebArticleService;
-import org.bouncycastle.util.test.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,6 +32,8 @@ public class WebArticleServiceImpl implements WebArticleService {
 
     private final static String DEPLOYOK = "Deploy OK";
     private final static String DEPLOYFAILED = "Deploy failed";
+    private final static String GETUSERARTICLEOK = "Get user article OK";
+    private final static String GETUSERARTICLEFAILED = "GET user article failed";
     private final static Integer SUCCESSSTATUS = 0;
     private final static Integer FAILEDTATUS = 1;
 
@@ -68,6 +70,23 @@ public class WebArticleServiceImpl implements WebArticleService {
         }else {
             baseResponse.setMessage(DEPLOYFAILED);
             baseResponse.setStatus(FAILEDTATUS);
+        }
+        return baseResponse;
+    }
+
+    @Override
+    public BaseResponse webGetUserArticle (WebGetUserArticleModel webGetUserArticleModel){
+        BaseResponse baseResponse = new BaseResponse();
+        if (useraccountMapper.selectByPrimaryKey(webGetUserArticleModel.getUserName()) != null){
+            List<Webarticle> articles = webarticleMapper.selectByUserName(webGetUserArticleModel.getUserName());
+            Collections.reverse(articles);
+            baseResponse.setStatus(SUCCESSSTATUS);
+            baseResponse.setMessage(GETUSERARTICLEOK);
+
+            baseResponse.setData(articles);
+        } else {
+            baseResponse.setStatus(FAILEDTATUS);
+            baseResponse.setMessage(GETUSERARTICLEFAILED);
         }
         return baseResponse;
     }
