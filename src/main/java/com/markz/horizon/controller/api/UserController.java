@@ -61,4 +61,10 @@ public class UserController {
     public BaseResponse uploadAvatarUrl(@RequestBody @Valid UploadAvatarUrlModel uploadAvatarUrlModel) {
         return webUserService.uploadAvatarUrl(uploadAvatarUrlModel);
     }
+
+    @ApiOperation("获取其他用户个人信息")
+    @PostMapping("/webgetotheruserinfo")
+    public BaseResponse webGetOtherUserInfo(@RequestBody @Valid WebGetOtherUserInfoModel webGetOtherUserInfoModel) {
+        return webUserService.webGetOtherUserInfo(webGetOtherUserInfoModel);
+    }
 }

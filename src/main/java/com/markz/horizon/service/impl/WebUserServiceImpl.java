@@ -4,6 +4,7 @@ package com.markz.horizon.service.impl;
 import com.markz.horizon.entity.base.BaseResponse;
 import com.markz.horizon.entity.dao.Useraccount;
 import com.markz.horizon.entity.model.UploadAvatarUrlModel;
+import com.markz.horizon.entity.model.WebGetOtherUserInfoModel;
 import com.markz.horizon.entity.model.WebGetUserInfoModel;
 import com.markz.horizon.mapper.UseraccountMapper;
 import com.markz.horizon.service.WebUserService;
@@ -69,6 +70,34 @@ public class WebUserServiceImpl implements WebUserService {
         } else {
             baseResponse.setStatus(FAILEDSTATUS);
             baseResponse.setMessage(UPLOADAVATARURLFAILED);
+        }
+        return baseResponse;
+    }
+
+    /**
+     * 获取其他用户的个人信息
+     * @param webGetOtherUserInfoModel
+     * @return
+     */
+    @Override
+    public @NotNull BaseResponse webGetOtherUserInfo(@NotNull WebGetOtherUserInfoModel webGetOtherUserInfoModel){
+
+        BaseResponse baseResponse = new BaseResponse();
+        if (useraccountMapper.selectByPrimaryKey(webGetOtherUserInfoModel.getSelfUserName()) != null){
+            if (useraccountMapper.selectByPrimaryKey(webGetOtherUserInfoModel.getOtherUserName()) != null){
+                Useraccount useraccount = useraccountMapper.selectByPrimaryKey(webGetOtherUserInfoModel.getOtherUserName());
+                useraccount.setPassword("");
+                useraccount.setIdnumber("");
+                baseResponse.setMessage(GETUSERINFOOK);
+                baseResponse.setStatus(OKSTATUS);
+                baseResponse.setData(useraccount);
+            }else {
+                baseResponse.setMessage(GETUSERINFOFAILED);
+                baseResponse.setStatus(FAILEDSTATUS);
+            }
+        }else {
+            baseResponse.setMessage(GETUSERINFOFAILED);
+            baseResponse.setStatus(FAILEDSTATUS);
         }
         return baseResponse;
     }

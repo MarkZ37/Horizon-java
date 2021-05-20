@@ -9,6 +9,7 @@ import com.markz.horizon.entity.model.WebDeployArticleModel;
 
 
 import com.markz.horizon.entity.model.WebGetUserArticleModel;
+import com.markz.horizon.entity.model.WebUserNameModel;
 import com.markz.horizon.mapper.UseraccountMapper;
 import com.markz.horizon.mapper.WebarticleMapper;
 import com.markz.horizon.service.WebArticleService;
@@ -34,6 +35,8 @@ public class WebArticleServiceImpl implements WebArticleService {
     private final static String DEPLOYFAILED = "Deploy failed";
     private final static String GETUSERARTICLEOK = "Get user article OK";
     private final static String GETUSERARTICLEFAILED = "GET user article failed";
+    private final static String GETARTICLEOK = "Get article OK";
+    private final static String GETARTICLEFAILED = "GET article failed";
     private final static Integer SUCCESSSTATUS = 0;
     private final static Integer FAILEDTATUS = 1;
 
@@ -61,7 +64,8 @@ public class WebArticleServiceImpl implements WebArticleService {
             webarticle.setUsername(webDeployArticleModel.getUserName());
             webarticle.setAvatarurl(useraccount.getAvatarurl());
             webarticle.setNickname(useraccount.getNickname());
-
+            webarticle.setGood(0);
+            webarticle.setDislike(0);
 
             webarticleMapper.insert(webarticle);
 
@@ -87,6 +91,24 @@ public class WebArticleServiceImpl implements WebArticleService {
         } else {
             baseResponse.setStatus(FAILEDTATUS);
             baseResponse.setMessage(GETUSERARTICLEFAILED);
+        }
+        return baseResponse;
+    }
+
+    @Override
+    public BaseResponse webGetArticle (WebUserNameModel webUserNameModel){
+
+        BaseResponse baseResponse = new BaseResponse();
+        if (useraccountMapper.selectByPrimaryKey(webUserNameModel.getUserName()) != null){
+            List<Webarticle> webarticles = webarticleMapper.selectAll();
+            Collections.reverse(webarticles);
+            baseResponse.setStatus(SUCCESSSTATUS);
+            baseResponse.setMessage(GETARTICLEOK);
+            baseResponse.setData(webarticles);
+        } else {
+
+            baseResponse.setMessage(GETARTICLEFAILED);
+            baseResponse.setStatus(FAILEDTATUS);
         }
         return baseResponse;
     }
