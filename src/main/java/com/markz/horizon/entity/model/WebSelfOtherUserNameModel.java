@@ -7,10 +7,10 @@ import javax.validation.constraints.NotBlank;
 
 @Data
 @ToString
-public class WebGetOtherUserInfoModel {
+public class WebSelfOtherUserNameModel {
     @NotBlank(message = "selfUsername为空")
     private String selfUserName;
 
-    @NotBlank(message = "OtherUsername为空")
-    private String OtherUserName;
+    @NotBlank(message = "otherUsername为空")
+    private String otherUserName;
 }

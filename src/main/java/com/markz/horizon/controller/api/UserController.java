@@ -64,7 +64,7 @@ public class UserController {
 
     @ApiOperation("获取其他用户个人信息")
     @PostMapping("/webgetotheruserinfo")
-    public BaseResponse webGetOtherUserInfo(@RequestBody @Valid WebGetOtherUserInfoModel webGetOtherUserInfoModel) {
-        return webUserService.webGetOtherUserInfo(webGetOtherUserInfoModel);
+    public BaseResponse webGetOtherUserInfo(@RequestBody @Valid WebSelfOtherUserNameModel webSelfOtherUserNameModel) {
+        return webUserService.webGetOtherUserInfo(webSelfOtherUserNameModel);
     }
 }

@@ -2,9 +2,8 @@ package com.markz.horizon.service;
 
 import com.markz.horizon.entity.base.BaseResponse;
 import com.markz.horizon.entity.model.UploadAvatarUrlModel;
-import com.markz.horizon.entity.model.WebGetOtherUserInfoModel;
+import com.markz.horizon.entity.model.WebSelfOtherUserNameModel;
 import com.markz.horizon.entity.model.WebGetUserInfoModel;
-import com.markz.horizon.entity.model.WebRegistModel;
 
 import javax.validation.constraints.NotNull;
 
@@ -16,5 +15,5 @@ public interface WebUserService {
     BaseResponse uploadAvatarUrl(@NotNull UploadAvatarUrlModel uploadAvatarUrlModel);
 
     @NotNull
-    BaseResponse webGetOtherUserInfo(@NotNull WebGetOtherUserInfoModel webGetOtherUserInfoModel);
+    BaseResponse webGetOtherUserInfo(@NotNull WebSelfOtherUserNameModel webSelfOtherUserNameModel);
 }
