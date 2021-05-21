@@ -12,4 +12,4 @@ spring:
 
 mybatis:
   mapper-locations: classpath:/mapper/*.xml
-  type-aliases-package: com.markz.horizon.entity
+  type-aliases-package: com.markz.horizon.entity.dao

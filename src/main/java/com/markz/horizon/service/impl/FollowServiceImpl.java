@@ -24,6 +24,10 @@ public class FollowServiceImpl implements FollowService {
 
     private final static String FOLLOWUSEROK = "Follow user OK";
     private final static String FOLLOWUSERFAILED = "Follow user failed";
+    private final static String CANCELFOLLOWUSEROK = "Cancel follow user OK";
+    private final static String CANCELFOLLOWUSERFAILED = "Cancel follow user failed";
+    private final static String ISFOLLOW = "Have followed";
+    private final static String NOTFOLLOW = "Not follow";
     private final static Integer OKSTATUS = 0;
     private final static Integer FAILEDSTATUS = 1;
     @Override
@@ -46,6 +50,41 @@ public class FollowServiceImpl implements FollowService {
         }else {
             baseResponse.setStatus(FAILEDSTATUS);
             baseResponse.setMessage(FOLLOWUSERFAILED);
+        }
+        return baseResponse;
+    }
+
+    @Override
+    public @NotNull BaseResponse isFollowJudge(WebSelfOtherUserNameModel webSelfOtherUserNameModel){
+        BaseResponse baseResponse = new BaseResponse();
+        if (webfollowMapper.selectByUserName(webSelfOtherUserNameModel.getSelfUserName(),webSelfOtherUserNameModel.getOtherUserName()) != null){
+            baseResponse.setMessage(ISFOLLOW);
+            baseResponse.setStatus(OKSTATUS);
+        }else {
+            baseResponse.setStatus(FAILEDSTATUS);
+            baseResponse.setMessage(NOTFOLLOW);
+        }
+        return baseResponse;
+    }
+
+    @Override
+    public @NotNull BaseResponse cancelFollowUser(WebSelfOtherUserNameModel webSelfOtherUserNameModel){
+        BaseResponse baseResponse = new BaseResponse();
+        if(useraccountMapper.selectByPrimaryKey(webSelfOtherUserNameModel.getSelfUserName()) != null
+                && useraccountMapper.selectByPrimaryKey(webSelfOtherUserNameModel.getOtherUserName()) != null){
+
+            if (webfollowMapper.selectByUserName(webSelfOtherUserNameModel.getSelfUserName(),webSelfOtherUserNameModel.getOtherUserName()) != null){
+
+                webfollowMapper.deletByUserName(webSelfOtherUserNameModel.getSelfUserName(),webSelfOtherUserNameModel.getOtherUserName());
+                baseResponse.setStatus(OKSTATUS);
+                baseResponse.setMessage(CANCELFOLLOWUSEROK);
+            }else {
+                baseResponse.setStatus(FAILEDSTATUS);
+                baseResponse.setMessage(CANCELFOLLOWUSERFAILED);
+            }
+        }else {
+            baseResponse.setStatus(FAILEDSTATUS);
+            baseResponse.setMessage(CANCELFOLLOWUSERFAILED);
         }
         return baseResponse;
     }

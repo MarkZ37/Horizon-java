@@ -15,4 +15,6 @@ public interface WebfollowMapper {
     int updateByPrimaryKey(Webfollow record);
 
     Webfollow selectByUserName(String username,String flusername);
+
+    int deletByUserName(String username,String flusername);
 }

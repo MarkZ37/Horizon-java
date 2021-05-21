@@ -24,4 +24,14 @@ public class FollowController {
     public BaseResponse webFollowUser(@RequestBody @Valid WebSelfOtherUserNameModel webSelfOtherUserNameModel){
         return followService.followUser(webSelfOtherUserNameModel);
     }
+
+    @RequestMapping(value = "/isfollowjudge", method = RequestMethod.POST)
+    public BaseResponse isFollowJudge(@RequestBody @Valid WebSelfOtherUserNameModel webSelfOtherUserNameModel){
+        return followService.isFollowJudge(webSelfOtherUserNameModel);
+    }
+
+    @RequestMapping(value = "/webcancelfollowuser", method = RequestMethod.POST)
+    public BaseResponse webCancelFollowUser(@RequestBody @Valid WebSelfOtherUserNameModel webSelfOtherUserNameModel){
+        return followService.cancelFollowUser(webSelfOtherUserNameModel);
+    }
 }

@@ -37,4 +37,9 @@
     where username = #{username,jdbcType=VARCHAR}
     and flusername = #{flusername,jdbcType=VARCHAR}
   </select>
+  <delete id="deletByUserName" parameterType="java.lang.String">
+    delete from webfollow
+    where username = #{username,jdbcType=VARCHAR}
+    and flusername = #{flusername,jdbcType=VARCHAR}
+  </delete>
 </mapper>
