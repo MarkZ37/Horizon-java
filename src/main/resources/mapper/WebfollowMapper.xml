@@ -42,4 +42,9 @@
     where username = #{username,jdbcType=VARCHAR}
     and flusername = #{flusername,jdbcType=VARCHAR}
   </delete>
+  <select id="selectUserFollowList" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select id, username, flusername
+    from webfollow
+    where username = #{username,jdbcType=VARCHAR}
+  </select>
 </mapper>

@@ -45,7 +45,7 @@ public class ArticleController {
     }
 
     @RequestMapping(value = "/webgetarticle", method = RequestMethod.POST)
-    public BaseResponse webGetArticle(@RequestBody @Valid WebUserNameModel webUserNameModel){
-        return webArticleService.webGetArticle(webUserNameModel);
+    public BaseResponse webGetArticle(@RequestBody @Valid ArticlePagingModel articlePagingModel){
+        return webArticleService.webGetArticle(articlePagingModel);
     }
 }

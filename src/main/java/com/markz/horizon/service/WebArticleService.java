@@ -1,6 +1,7 @@
 package com.markz.horizon.service;
 
 import com.markz.horizon.entity.base.BaseResponse;
+import com.markz.horizon.entity.model.ArticlePagingModel;
 import com.markz.horizon.entity.model.WebDeployArticleModel;
 import com.markz.horizon.entity.model.WebGetUserArticleModel;
 import com.markz.horizon.entity.model.WebUserNameModel;
@@ -16,5 +17,5 @@ public interface WebArticleService {
     BaseResponse webGetUserArticle(@NotNull WebGetUserArticleModel webGetUserArticleModel);
 
     @NotNull
-    BaseResponse webGetArticle(@NotNull WebUserNameModel webUserNameModel);
+    BaseResponse webGetArticle(@NotNull ArticlePagingModel articlePagingModel);
 }

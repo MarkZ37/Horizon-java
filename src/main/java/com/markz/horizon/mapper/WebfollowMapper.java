@@ -17,4 +17,6 @@ public interface WebfollowMapper {
     Webfollow selectByUserName(String username,String flusername);
 
     int deletByUserName(String username,String flusername);
+
+    List<Webfollow> selectUserFollowList(String username);
 }

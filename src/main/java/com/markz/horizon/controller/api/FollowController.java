@@ -4,6 +4,7 @@ package com.markz.horizon.controller.api;
 import com.markz.horizon.entity.base.BaseResponse;
 import com.markz.horizon.entity.model.DeployArticleModel;
 import com.markz.horizon.entity.model.WebSelfOtherUserNameModel;
+import com.markz.horizon.entity.model.WebUserNameModel;
 import com.markz.horizon.service.FollowService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,5 +34,10 @@ public class FollowController {
     @RequestMapping(value = "/webcancelfollowuser", method = RequestMethod.POST)
     public BaseResponse webCancelFollowUser(@RequestBody @Valid WebSelfOtherUserNameModel webSelfOtherUserNameModel){
         return followService.cancelFollowUser(webSelfOtherUserNameModel);
+    }
+
+    @RequestMapping(value = "/getuserfollowlist", method = RequestMethod.POST)
+    public BaseResponse webGetUserFollowList(@RequestBody @Valid WebUserNameModel webUserNameModel){
+        return followService.getFollowUserList(webUserNameModel);
     }
 }

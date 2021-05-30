@@ -1,10 +1,13 @@
 package com.markz.horizon.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.markz.horizon.entity.base.BaseResponse;
 
 
 import com.markz.horizon.entity.dao.Useraccount;
 import com.markz.horizon.entity.dao.Webarticle;
+import com.markz.horizon.entity.model.ArticlePagingModel;
 import com.markz.horizon.entity.model.WebDeployArticleModel;
 
 
@@ -78,6 +81,11 @@ public class WebArticleServiceImpl implements WebArticleService {
         return baseResponse;
     }
 
+    /**
+     * 获取用户文章
+     * @param webGetUserArticleModel
+     * @return
+     */
     @Override
     public BaseResponse webGetUserArticle (WebGetUserArticleModel webGetUserArticleModel){
         BaseResponse baseResponse = new BaseResponse();
@@ -95,16 +103,26 @@ public class WebArticleServiceImpl implements WebArticleService {
         return baseResponse;
     }
 
+    /**
+     * 获取首页文章
+     * @param articlePagingModel
+     * @return
+     */
     @Override
-    public BaseResponse webGetArticle (WebUserNameModel webUserNameModel){
+    public BaseResponse webGetArticle (ArticlePagingModel articlePagingModel){
 
         BaseResponse baseResponse = new BaseResponse();
-        if (useraccountMapper.selectByPrimaryKey(webUserNameModel.getUserName()) != null){
+        if (useraccountMapper.selectByPrimaryKey(articlePagingModel.getUserName()) != null){
+            PageHelper.startPage(articlePagingModel.getPageNum(),10);
+            PageHelper.orderBy("time desc");
             List<Webarticle> webarticles = webarticleMapper.selectAll();
-            Collections.reverse(webarticles);
+            PageInfo pageInfo = new PageInfo(webarticles);
+            System.out.println(pageInfo);
+            Map<String,Object> data = new HashMap<String, Object>();
+
             baseResponse.setStatus(SUCCESSSTATUS);
             baseResponse.setMessage(GETARTICLEOK);
-            baseResponse.setData(webarticles);
+            baseResponse.setData(pageInfo);
         } else {
 
             baseResponse.setMessage(GETARTICLEFAILED);
