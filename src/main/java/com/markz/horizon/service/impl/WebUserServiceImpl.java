@@ -8,6 +8,7 @@ import com.markz.horizon.entity.model.WebSelfOtherUserNameModel;
 import com.markz.horizon.entity.model.WebGetUserInfoModel;
 import com.markz.horizon.mapper.UseraccountMapper;
 import com.markz.horizon.service.WebUserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +20,7 @@ import java.util.Map;
 
 @Service
 @Transactional
+@Slf4j
 public class WebUserServiceImpl implements WebUserService {
 
     @Autowired
@@ -48,6 +50,7 @@ public class WebUserServiceImpl implements WebUserService {
             baseResponse.setMessage(GETUSERINFOFAILED);
             baseResponse.setStatus(FAILEDSTATUS);
         }
+
 
         return baseResponse;
     }

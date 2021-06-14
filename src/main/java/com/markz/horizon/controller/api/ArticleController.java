@@ -48,4 +48,29 @@ public class ArticleController {
     public BaseResponse webGetArticle(@RequestBody @Valid ArticlePagingModel articlePagingModel){
         return webArticleService.webGetArticle(articlePagingModel);
     }
+
+    @RequestMapping(value = "/webgetsupportstatus", method = RequestMethod.POST)
+    public BaseResponse webGetSupportStatus(@RequestBody @Valid WebUserNameArticleIdModel webUserNameArticleIdModel){
+        return webArticleService.webGetUserSupportStatus(webUserNameArticleIdModel);
+    }
+
+    @RequestMapping(value = "/websupportarticle", method = RequestMethod.POST)
+    public BaseResponse webSupportArticle(@RequestBody @Valid WebUserNameArticleIdModel webUserNameArticleIdModel){
+        return webArticleService.webSupportArticle(webUserNameArticleIdModel);
+    }
+
+    @RequestMapping(value = "/webdislikearticle", method = RequestMethod.POST)
+    public BaseResponse webDislikeArticle(@RequestBody @Valid WebUserNameArticleIdModel webUserNameArticleIdModel){
+        return webArticleService.webDislikeArticle(webUserNameArticleIdModel);
+    }
+
+    @RequestMapping(value = "/webcancelsupport", method = RequestMethod.POST)
+    public BaseResponse webCancelSupport(@RequestBody @Valid WebUserNameArticleIdModel webUserNameArticleIdModel){
+        return webArticleService.webCancelSupport(webUserNameArticleIdModel);
+    }
+
+    @RequestMapping(value = "/webcanceldislike", method = RequestMethod.POST)
+    public BaseResponse webCancelDislike(@RequestBody @Valid WebUserNameArticleIdModel webUserNameArticleIdModel){
+        return webArticleService.webCancelDislike(webUserNameArticleIdModel);
+    }
 }
