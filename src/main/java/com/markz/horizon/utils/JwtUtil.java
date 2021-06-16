@@ -21,7 +21,7 @@ public class JwtUtil {
     //    过期时间设置
     private static final long EXPTRE_TIME= 2 * 60 * 60 * 1000;
     // 濒死时间设置
-    private  static final long NEARDEATH_TIME = 30 * 60 * 1000;
+    private  static final long NEARDEATH_TIME = 20 * 60 * 1000;
 //    private static final long EXPTRE_TIME=10 * 1000;
     /**
      * token私钥
@@ -72,7 +72,7 @@ public class JwtUtil {
      * @param token
      * @return
      */
-    public static boolean checkToken(String token) {
+    public static boolean checkNearDeathToken(String token) {
 
         DecodedJWT decodedJWT = JWT.decode(token);
         Map<String, Claim> tokenInfo = decodedJWT.getClaims();
@@ -89,6 +89,17 @@ public class JwtUtil {
             return true;
         }
 
+    }
+
+    public static String refreshToken(String oldToken){
+
+        DecodedJWT decodedJWT = JWT.decode(oldToken);
+        Map<String, Claim> tokenInfo = decodedJWT.getClaims();
+        Claim userIDClaim = tokenInfo.get("userID");
+        Claim loginNameClaim = tokenInfo.get("loginName");
+        String userID = userIDClaim.asString();
+        String loginName = loginNameClaim.asString();
+        return Sign(loginName,userID);
     }
 
 }

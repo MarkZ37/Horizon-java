@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class BaseResponse {
     private Integer status;
     private String Message;
+    private String refreshToken;
     private Object data;
-
 
 }
