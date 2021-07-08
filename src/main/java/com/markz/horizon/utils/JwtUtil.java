@@ -19,9 +19,9 @@ import java.util.Map;
 @Slf4j
 public class JwtUtil {
     //    过期时间设置
-    private static final long EXPTRE_TIME= 2 * 60 * 60 * 1000;
+    private static final long EXPTRE_TIME= 120 * 60 * 1000;
     // 濒死时间设置
-    private  static final long NEARDEATH_TIME = 20 * 60 * 1000;
+    private  static final long NEARDEATH_TIME = 115 * 60 * 1000;
 //    private static final long EXPTRE_TIME=10 * 1000;
     /**
      * token私钥

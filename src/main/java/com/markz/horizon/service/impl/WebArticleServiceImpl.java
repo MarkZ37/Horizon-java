@@ -126,7 +126,7 @@ public class WebArticleServiceImpl implements WebArticleService {
         BaseResponse baseResponse = new BaseResponse();
         if (useraccountMapper.selectByPrimaryKey(articlePagingModel.getUserName()) != null){
             PageHelper.startPage(articlePagingModel.getPageNum(),10);
-            PageHelper.orderBy("time desc");
+            PageHelper.orderBy("good desc");
             List<Webarticle> webarticles = webarticleMapper.selectAll();
             PageInfo pageInfo = new PageInfo(webarticles);
 
