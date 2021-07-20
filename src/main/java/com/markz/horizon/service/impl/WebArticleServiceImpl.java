@@ -94,7 +94,7 @@ public class WebArticleServiceImpl implements WebArticleService {
     }
 
     /**
-     * 获取用户文章
+     * 获取用户的文章
      * @param webGetUserArticleModel
      * @return
      */
